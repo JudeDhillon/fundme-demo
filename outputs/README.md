@@ -11,9 +11,9 @@ This is a static prototype reconstructed from the supplied hosting handoff becau
 
 ## Publish with GitHub Pages
 
-The repository includes a GitHub Actions workflow that publishes the `outputs` folder. In repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. The first deployment may take a few minutes. The GitHub Pages custom-domain setting is already set to `fundme.in.net`, but the domain will not work until its DNS is configured at the registrar.
+The repository includes a GitHub Actions workflow that publishes the `outputs` folder. In repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. The first deployment may take a few minutes. The custom domain is not enabled yet because its DNS has not been configured; this keeps the default GitHub Pages address working.
 
-At the DNS provider for `in.net`, add a `CNAME` record with host/name `fundme` and target `judedhillon.github.io` (some providers expect the full host `fundme.in.net`). Do not replace existing DNS records blindly. Once DNS resolves to GitHub Pages and the certificate is ready, enable **Enforce HTTPS** in the repository's Pages settings.
+To connect `fundme.in.net` later, first add a `CNAME` record at the DNS provider with host/name `fundme` and target `judedhillon.github.io` (some providers expect the full host `fundme.in.net`). Do not replace existing DNS records blindly. After DNS resolves to GitHub Pages, set `fundme.in.net` as the custom domain in repository Pages settings and enable **Enforce HTTPS** when the certificate is ready.
 
 ## Important limitations
 
