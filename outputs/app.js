@@ -16,7 +16,7 @@
   })[char]);
 
   function initialState() {
-    return { role: "investor", view: "discover", noticeDismissed: false, pitches: samplePitches.map((pitch) => ({ ...pitch, intros: [] })) };
+    return { role: "investor", profileName: "", view: "discover", noticeDismissed: false, pitches: samplePitches.map((pitch) => ({ ...pitch, intros: [] })) };
   }
 
   function loadState() {
@@ -41,7 +41,13 @@
             status: item.status
           })) : []
         }));
-      return { role: data.role, view: ["discover", "saved", "inbox"].includes(data.view) ? data.view : "discover", noticeDismissed: Boolean(data.noticeDismissed), pitches };
+      return {
+        role: data.role,
+        profileName: typeof data.profileName === "string" ? data.profileName.slice(0, 50) : "",
+        view: ["discover", "saved", "inbox"].includes(data.view) ? data.view : "discover",
+        noticeDismissed: Boolean(data.noticeDismissed),
+        pitches
+      };
     } catch (error) {
       console.error("Could not read the Fund Me demo data.", error);
       return initialState();
@@ -67,6 +73,9 @@
     const founder = state.role === "founder";
     $("#role-label").textContent = founder ? "Founder" : "Investor";
     $("#topbar-role").textContent = founder ? "Founder" : "Investor";
+    $("#account-action-label").textContent = state.profileName ? state.profileName : "Create account";
+    $("#account-avatar").textContent = state.profileName ? state.profileName.trim().slice(0, 1).toUpperCase() : "+";
+    $("#account-action").setAttribute("aria-label", state.profileName ? `Demo profile: ${state.profileName}` : "Create a demo account profile");
     $("#saved-count").textContent = String(savedCount());
     $("#inbox-count").textContent = String(pendingCount());
     $("#create-pitch").hidden = !founder || state.view === "inbox";
@@ -205,6 +214,30 @@
   $("#cancel-dialog").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) dialog.close();
+  });
+  const accountDialog = $("#account-dialog");
+  const accountForm = $("#account-form");
+  $("#account-action").addEventListener("click", () => {
+    accountForm.elements.displayName.value = state.profileName;
+    accountForm.elements.role.value = state.role;
+    accountDialog.showModal();
+  });
+  $("#close-account-dialog").addEventListener("click", () => accountDialog.close());
+  $("#cancel-account-dialog").addEventListener("click", () => accountDialog.close());
+  accountDialog.addEventListener("click", (event) => {
+    if (event.target === accountDialog) accountDialog.close();
+  });
+  accountForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = new FormData(accountForm);
+    const displayName = String(form.get("displayName") || "").trim();
+    const role = String(form.get("role") || "");
+    if (!displayName || !["founder", "investor"].includes(role)) return;
+    state.profileName = displayName.slice(0, 50);
+    state.role = role;
+    persist();
+    accountDialog.close();
+    updateHeader();
   });
   $("#pitch-form").addEventListener("submit", (event) => {
     event.preventDefault();

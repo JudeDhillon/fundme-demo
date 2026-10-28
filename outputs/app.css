@@ -79,3 +79,24 @@ a{color:inherit;text-decoration:none}
 @media(max-width:1000px){.workspace{grid-template-columns:205px 1fr}.pitch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.demo-banner{font-size:9px}.workspace{display:block;min-height:calc(100vh - 35px)}.sidebar{position:static;height:auto;min-height:0;padding:13px 5% 0;border-right:0;border-bottom:1px solid var(--line)}.sidebar>.brand,.side-label,.sidebar-bottom{display:none}.side-nav{display:flex;gap:5px;overflow-x:auto}.nav-item{white-space:nowrap;padding:10px 12px;font-size:10px}.topbar{height:52px;padding:0 5%;justify-content:space-between;gap:7px}.mobile-brand{display:block}.mobile-brand .brand{font-size:16px}.mobile-brand .brand-mark{width:23px;height:23px;font-size:15px;border-radius:7px}.topbar-note{font-size:8px}.mobile-switch{display:block}.reset-button{font-size:8px;padding:7px}.page-content{padding:34px 5% 55px}.page-heading{align-items:flex-start;flex-direction:column}.page-heading h1{font-size:34px}.create-button{align-self:flex-start}.controls{flex-wrap:wrap}.search-box{flex-basis:100%}.select-box{flex:1}.select-box select{width:100%;max-width:none}.pitch-grid{grid-template-columns:1fr}.card-art{height:140px}.request-card{align-items:flex-start;flex-wrap:wrap}.request-content{flex-basis:calc(100% - 55px)}.request-actions{margin-left:50px}.form-row{gap:7px}.pitch-dialog{padding:21px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* Softer glass surfaces and quick actions keep the demo inviting without hiding its controls. */
+body{background:radial-gradient(ellipse at 86% 4%,rgba(200,241,105,.13),transparent 30%),#f7f8f5}
+.sidebar{background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.pitch-card,.step-card,.role-card,.demo-notice{border-radius:12px}
+.pitch-card{background:rgba(255,255,255,.86);box-shadow:0 8px 26px rgba(37,54,39,.045);transition:transform .2s ease,box-shadow .2s ease}
+.pitch-card:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(37,54,39,.09)}
+.account-button{display:inline-flex;align-items:center;gap:8px;max-width:180px;border:1px solid rgba(220,228,215,.9);border-radius:999px;background:rgba(255,255,255,.78);padding:5px 12px 5px 6px;color:#465248;font-size:10px;font-weight:700;box-shadow:0 3px 12px rgba(37,54,39,.04);transition:background .2s,transform .2s}
+.account-button:hover{background:#fff;transform:translateY(-1px)}
+.account-avatar{width:27px;height:27px;flex:none;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#d9f3aa,#a8d75c);color:#35462b;font-size:15px;font-weight:700}
+.account-button #account-action-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.create-button{padding:13px 17px;border-radius:8px;box-shadow:0 6px 16px rgba(29,37,33,.13);transition:transform .2s,box-shadow .2s,background .2s}
+.create-button:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(29,37,33,.18)}
+.create-button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.pitch-dialog{background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.8);border-radius:16px}
+.pitch-dialog::backdrop{background:rgba(20,30,22,.42);backdrop-filter:blur(4px)}
+.pitch-dialog input:focus,.pitch-dialog select:focus,.pitch-dialog textarea:focus{border-color:#a6c679;box-shadow:0 0 0 3px rgba(166,198,121,.18)}
+.account-dialog{width:min(440px,calc(100% - 28px))}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(126,165,73,.55);outline-offset:2px}
+@media(max-width:650px){.topbar-note{display:none}.account-button{padding:4px;border:0;background:transparent;box-shadow:none}.account-button #account-action-label{display:none}.account-avatar{width:29px;height:29px}.create-button{align-self:flex-start}}

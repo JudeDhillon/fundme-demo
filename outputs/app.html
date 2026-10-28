@@ -29,9 +29,9 @@
       </div>
     </aside>
     <main class="main-panel">
-      <header class="topbar"><div class="mobile-brand"><a class="brand" href="index.html"><span class="brand-mark">f</span> fundme</a></div><div class="topbar-note"><span class="status-dot"></span> Sample workspace <span class="topbar-sep">/</span> <span id="topbar-role">Investor</span></div><button class="mobile-switch" id="mobile-role-toggle">Switch role</button><button class="reset-button" id="reset-demo">Reset demo data</button></header>
+      <header class="topbar"><div class="mobile-brand"><a class="brand" href="index.html"><span class="brand-mark">f</span> fundme</a></div><div class="topbar-note"><span class="status-dot"></span> Sample workspace <span class="topbar-sep">/</span> <span id="topbar-role">Investor</span></div><button class="mobile-switch" id="mobile-role-toggle">Switch role</button><button class="reset-button" id="reset-demo">Reset demo data</button><button class="account-button" id="account-action"><span class="account-avatar" id="account-avatar">+</span><span id="account-action-label">Create account</span></button></header>
       <div class="page-content">
-        <section class="page-heading"><div><p class="eyebrow" id="page-eyebrow">THE DISCOVERY SPACE</p><h1 id="page-title">Find your next <span>big idea.</span></h1><p id="page-description">Explore early-stage companies and discover founders worth knowing.</p></div><button class="button button-dark create-button" id="create-pitch">＋ Create a pitch</button></section>
+        <section class="page-heading"><div><p class="eyebrow" id="page-eyebrow">THE DISCOVERY SPACE</p><h1 id="page-title">Find your next <span>big idea.</span></h1><p id="page-description">Explore early-stage companies and discover founders worth knowing.</p></div><button class="button button-dark create-button" id="create-pitch"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg><span>Create a pitch</span></button></section>
         <div class="demo-notice"><span>i</span><p>Sample content only. Changes stay in this browser and are not shared with anyone.</p><button id="dismiss-notice" aria-label="Dismiss notice">×</button></div>
         <section id="discover-controls" class="controls"><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search companies, sectors, or keywords" aria-label="Search companies, sectors, or keywords"></label><label class="select-box"><span class="sr-only">Filter by sector</span><select id="sector-filter"><option value="all">All sectors</option><option>Climate</option><option>Health</option><option>Education</option><option>Food</option><option>Fintech</option></select></label><label class="select-box"><span class="sr-only">Filter by stage</span><select id="stage-filter"><option value="all">All stages</option><option>Idea</option><option>Pre-seed</option><option>Seed</option></select></label></section>
         <section id="pitch-grid" class="pitch-grid" aria-live="polite"></section>
@@ -50,6 +50,21 @@
       <label>One-line description<textarea name="description" required maxlength="180" rows="3" placeholder="What are you building?"></textarea></label>
       <label>Location<input name="location" maxlength="60" placeholder="e.g. Bengaluru"></label>
       <div class="dialog-actions"><button class="button button-quiet" type="button" id="cancel-dialog">Cancel</button><button class="button button-dark" type="submit">Publish sample pitch ↗</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="account-dialog" class="pitch-dialog account-dialog">
+    <form id="account-form">
+      <div class="dialog-heading"><div><p class="eyebrow">WELCOME TO FUND ME</p><h2>Create your demo profile</h2></div><button class="icon-button" type="button" id="close-account-dialog" aria-label="Close">×</button></div>
+      <p class="dialog-warning">This is a demo profile saved only in this browser—not a secure account. Don’t enter a password or confidential information.</p>
+      <label>Your name<input name="displayName" required maxlength="50" autocomplete="name" placeholder="How should we call you?"></label>
+      <label>I’m here as
+        <select name="role" required>
+          <option value="founder">A founder — I want to share a pitch</option>
+          <option value="investor">An investor — I want to discover ideas</option>
+        </select>
+      </label>
+      <div class="dialog-actions"><button class="button button-quiet" type="button" id="cancel-account-dialog">Cancel</button><button class="button button-dark" type="submit">Create demo profile <span aria-hidden="true">↗</span></button></div>
     </form>
   </dialog>
 </body>
