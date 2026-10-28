@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f2">
+  <meta name="description" content="Explore the Fund Me founder and investor demo.">
+  <title>Explore | Fund Me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="demo-banner"><span>DEMO ONLY</span> This browser-only prototype is not a real investment service. Don’t enter confidential or personal information.</div>
+  <div class="workspace">
+    <aside class="sidebar">
+      <a class="brand" href="index.html"><span class="brand-mark">f</span> fundme</a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Workspace">
+        <button class="nav-item active" data-view="discover"><span>⌕</span> Discover</button>
+        <button class="nav-item" data-view="saved"><span>♡</span> Saved <b class="nav-count" id="saved-count">0</b></button>
+        <button class="nav-item" data-view="inbox"><span>↗</span> Introductions <b class="nav-count" id="inbox-count">0</b></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="role-card"><span class="role-icon">◉</span><div><small>DEMO ROLE</small><strong id="role-label">Investor</strong></div><button id="role-toggle" class="switch-role">Switch role</button></div>
+        <a class="back-link" href="index.html">← Back to home</a>
+      </div>
+    </aside>
+    <main class="main-panel">
+      <header class="topbar"><div class="mobile-brand"><a class="brand" href="index.html"><span class="brand-mark">f</span> fundme</a></div><div class="topbar-note"><span class="status-dot"></span> Sample workspace <span class="topbar-sep">/</span> <span id="topbar-role">Investor</span></div><button class="mobile-switch" id="mobile-role-toggle">Switch role</button><button class="reset-button" id="reset-demo">Reset demo data</button></header>
+      <div class="page-content">
+        <section class="page-heading"><div><p class="eyebrow" id="page-eyebrow">THE DISCOVERY SPACE</p><h1 id="page-title">Find your next <span>big idea.</span></h1><p id="page-description">Explore early-stage companies and discover founders worth knowing.</p></div><button class="button button-dark create-button" id="create-pitch">＋ Create a pitch</button></section>
+        <div class="demo-notice"><span>i</span><p>Sample content only. Changes stay in this browser and are not shared with anyone.</p><button id="dismiss-notice" aria-label="Dismiss notice">×</button></div>
+        <section id="discover-controls" class="controls"><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search companies, sectors, or keywords" aria-label="Search companies, sectors, or keywords"></label><label class="select-box"><span class="sr-only">Filter by sector</span><select id="sector-filter"><option value="all">All sectors</option><option>Climate</option><option>Health</option><option>Education</option><option>Food</option><option>Fintech</option></select></label><label class="select-box"><span class="sr-only">Filter by stage</span><select id="stage-filter"><option value="all">All stages</option><option>Idea</option><option>Pre-seed</option><option>Seed</option></select></label></section>
+        <section id="pitch-grid" class="pitch-grid" aria-live="polite"></section>
+        <section id="empty-state" class="empty-state" hidden><div>✳</div><h2 id="empty-title">No pitches found</h2><p id="empty-description">Try changing your search or filters.</p></section>
+        <section id="inbox-view" class="inbox-view" hidden><div class="inbox-heading"><h2>Introduction requests</h2><p>Requests created in this browser appear here.</p></div><div id="request-list"></div></section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="pitch-dialog" class="pitch-dialog">
+    <form id="pitch-form">
+      <div class="dialog-heading"><div><p class="eyebrow">YOUR STORY, YOUR WAY</p><h2>Create a sample pitch</h2></div><button class="icon-button" type="button" id="close-dialog" aria-label="Close">×</button></div>
+      <p class="dialog-warning">Demo only: this information is saved in this browser. Don’t enter confidential or personal information.</p>
+      <label>Company name<input name="name" required maxlength="60" placeholder="e.g. Green Path"></label>
+      <div class="form-row"><label>Sector<select name="sector"><option>Climate</option><option>Health</option><option>Education</option><option>Food</option><option>Fintech</option></select></label><label>Stage<select name="stage"><option>Idea</option><option>Pre-seed</option><option>Seed</option></select></label></div>
+      <label>One-line description<textarea name="description" required maxlength="180" rows="3" placeholder="What are you building?"></textarea></label>
+      <label>Location<input name="location" maxlength="60" placeholder="e.g. Bengaluru"></label>
+      <div class="dialog-actions"><button class="button button-quiet" type="button" id="cancel-dialog">Cancel</button><button class="button button-dark" type="submit">Publish sample pitch ↗</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
