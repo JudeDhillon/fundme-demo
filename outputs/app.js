@@ -375,7 +375,7 @@
 
   function openWizard() {
     for (const field of PITCH_FIELDS) {
-      pitchForm.elements[field].value = state.pitchDraft[field] || "";
+      pitchForm.elements[field].value = state.pitchDraft[field] || (field === "founderName" ? state.profileName : "");
     }
     renderPhotoPreviews();
     renderVideoPreview();
