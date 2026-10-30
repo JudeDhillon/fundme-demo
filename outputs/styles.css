@@ -84,3 +84,41 @@ h1 span,.section-heading h2 span,.audience-copy h2 span{color:#87938b}
 @media(max-width:800px){.hero{padding:55px 7% 48px;gap:2%;grid-template-columns:1fr 1fr}.hero-art{min-height:370px}.orbit{width:330px;height:330px}.orbit-two{width:280px;height:280px}.pitch-preview{width:260px}.preview-art{height:170px}.float-note{right:-10px;bottom:35px}.section{padding:80px 7%}.audience-section{gap:7%}}
 @media(max-width:600px){.site-header{height:68px;padding:0 6%}.site-nav{gap:0}.site-nav>a:not(.button){display:none}.nav-cta{padding:12px 13px;font-size:11px}.brand{font-size:19px}.hero{padding:53px 7% 35px;grid-template-columns:1fr;gap:15px}.hero-copy{max-width:480px}.hero-art{min-height:355px}.pitch-preview{width:270px}.proof-strip{gap:12px;flex-wrap:wrap;font-size:9px;padding:17px}.section{padding:72px 7%}.section-heading{margin-bottom:34px}.steps{grid-template-columns:1fr}.step-card{min-height:190px}.step-icon{margin-bottom:24px}.audience-section{grid-template-columns:1fr;gap:38px}.audience-note{max-width:430px}.demo-callout{margin:40px 6%;padding:31px 25px;align-items:flex-start;flex-direction:column}.demo-callout h2{font-size:26px}.site-footer{padding:23px 6%;gap:13px;flex-wrap:wrap}.site-footer p{order:3;flex-basis:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+
+/* Matching cool-blue glass palette for the public landing page */
+:root{--ink:#17263d;--muted:#63748b;--paper:#f3f6fb;--green:#b9ebe3;--line:#dce5ef}
+body{background:radial-gradient(ellipse at 84% 8%,rgba(160,205,255,.25),transparent 30%),radial-gradient(ellipse at 12% 72%,rgba(194,183,255,.14),transparent 35%),#f3f6fb;color:var(--ink)}
+.site-header{position:sticky;top:0;z-index:5;background:rgba(247,250,255,.74);border-color:rgba(205,219,237,.75);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.brand-mark{background:linear-gradient(145deg,#c7f1e8,#a8d7f0);color:#24536a}
+.site-nav>a:not(.button){color:#536982}
+.button-dark{background:linear-gradient(135deg,#203b5d,#315d79);box-shadow:0 8px 20px rgba(35,68,103,.16)}
+.button-dark:hover{background:linear-gradient(135deg,#294b70,#38728a)}
+.button-light{background:linear-gradient(135deg,#bdece4,#c7def5);color:#1d3d56}
+.eyebrow{color:#527c91}
+.eyebrow-dot{background:#54b9ad}
+.hero{position:relative}
+.hero-art:before{content:"";position:absolute;inset:30px 0;border-radius:48%;background:radial-gradient(ellipse,rgba(192,222,247,.35),transparent 70%)}
+.orbit{border-color:rgba(132,170,208,.22)}
+.pitch-preview,.float-note,.step-card,.audience-note{background:rgba(255,255,255,.73);border:1px solid rgba(255,255,255,.9);box-shadow:0 18px 48px rgba(42,72,109,.1);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.preview-art{background:linear-gradient(145deg,#b8e4dc,#4f8e94)}
+.sun{background:#f0d397}
+.hill-back{background:#578e92}
+.hill-front{background:#345d71}
+.arrow-circle{background:linear-gradient(145deg,#bdece4,#c7def5);color:#244b65}
+.proof-strip{border-color:rgba(195,211,230,.76);color:#5c7189}
+.proof-strip i,.note-stars,.spark-one{color:#50a9aa}
+.spark-one,.eyebrow-dot{color:#50a9aa}
+.how-section{background:rgba(255,255,255,.48)}
+.step-card{border-color:rgba(204,218,235,.65)}
+.step-number{color:#7b91a7}
+.lilac{background:#eeecfb;color:#7775ad}
+.peach{background:#fff0e6;color:#b87958}
+.mint{background:#e3f4ef;color:#397e79}
+.audience-section{background:rgba(224,235,247,.58)}
+.audience-note blockquote{color:#253d59}
+.audience-note>span,.site-footer p,.site-footer>a:last-child{color:#61758d}
+.demo-callout{position:relative;overflow:hidden;background:linear-gradient(120deg,rgba(31,57,88,.96),rgba(49,91,117,.94));box-shadow:0 20px 48px rgba(35,64,98,.18)}
+.demo-callout:after{content:"";position:absolute;width:280px;height:280px;right:13%;top:-190px;border:1px solid rgba(206,236,255,.15);border-radius:50%;box-shadow:0 0 0 32px rgba(206,236,255,.035),0 0 0 64px rgba(206,236,255,.025);pointer-events:none}
+.demo-callout .eyebrow{color:#a9dcd7}
+.site-footer{border-color:rgba(195,211,230,.76)}
+@media(prefers-reduced-transparency:reduce){.site-header,.pitch-preview,.float-note,.step-card,.audience-note{backdrop-filter:none;-webkit-backdrop-filter:none;background:#fff}}
