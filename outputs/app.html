@@ -14,12 +14,13 @@
 </head>
 <body>
   <div class="demo-banner"><span>DEMO ONLY</span> This browser-only prototype is not a real investment service. Don’t enter confidential or personal information.</div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <div class="workspace">
     <aside class="sidebar">
       <a class="brand" href="index.html"><span class="brand-mark">f</span> fundme</a>
       <div class="side-label">WORKSPACE</div>
       <nav class="side-nav" aria-label="Workspace">
-        <button class="nav-item active" data-view="discover"><span>⌕</span> Discover</button>
+        <button class="nav-item active" data-view="discover"><span>⌕</span> Explore pitches</button>
         <button class="nav-item" data-view="saved"><span>♡</span> Saved <b class="nav-count" id="saved-count">0</b></button>
         <button class="nav-item" data-view="inbox"><span>↗</span> Introductions <b class="nav-count" id="inbox-count">0</b></button>
       </nav>
@@ -29,34 +30,73 @@
       </div>
     </aside>
     <main class="main-panel">
-      <header class="topbar"><div class="mobile-brand"><a class="brand" href="index.html"><span class="brand-mark">f</span> fundme</a></div><div class="topbar-note"><span class="status-dot"></span> Sample workspace <span class="topbar-sep">/</span> <span id="topbar-role">Investor</span></div><button class="mobile-switch" id="mobile-role-toggle">Switch role</button><button class="reset-button" id="reset-demo">Reset demo data</button><button class="account-button" id="account-action"><span class="account-avatar" id="account-avatar">+</span><span id="account-action-label">Create account</span></button></header>
+      <header class="topbar"><div class="mobile-brand"><a class="brand" href="index.html"><span class="brand-mark">f</span> fundme</a></div><div class="topbar-note"><span class="status-dot"></span> Browser demo <span class="topbar-sep">/</span> <span id="topbar-role">Investor</span></div><button class="reset-button" id="reset-demo">Reset demo</button><button class="account-button" id="account-action"><span class="account-avatar" id="account-avatar">+</span><span id="account-action-label">Create account</span></button></header>
       <div class="page-content">
-        <section class="page-heading"><div><p class="eyebrow" id="page-eyebrow">THE DISCOVERY SPACE</p><h1 id="page-title">Find your next <span>big idea.</span></h1><p id="page-description">Explore early-stage companies and discover founders worth knowing.</p></div><button class="button button-dark create-button" id="create-pitch"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg><span>Create a pitch</span></button></section>
+        <section class="welcome-hero" id="welcome-hero">
+          <div class="welcome-copy">
+            <p class="eyebrow">BIG DREAMS. LITTLE STEPS.</p>
+            <h1 id="welcome-title">Your next big idea<br>starts with a <span>hello.</span></h1>
+            <p>Discover thoughtful startup pitches—or share what you’re building with people who believe in new ideas.</p>
+            <div class="welcome-actions">
+              <button class="button button-dark" id="hero-explore">Explore pitches <span aria-hidden="true">→</span></button>
+              <button class="button button-soft" id="create-pitch"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></svg><span>Create your pitch</span></button>
+            </div>
+          </div>
+          <img class="welcome-mascot" src="assets/fundme-penguin.png" alt="Fund Me penguin mascot waving with a backpack" width="360" height="360">
+        </section>
+        <section class="page-heading"><div><p class="eyebrow" id="page-eyebrow">THE DISCOVERY SPACE</p><h2 id="page-title">Find your next <span>big idea.</span></h2><p id="page-description">Explore early-stage companies and discover founders worth knowing.</p></div></section>
         <div class="demo-notice"><span>i</span><p>Sample content only. Changes stay in this browser and are not shared with anyone.</p><button id="dismiss-notice" aria-label="Dismiss notice">×</button></div>
         <section id="discover-controls" class="controls"><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search companies, sectors, or keywords" aria-label="Search companies, sectors, or keywords"></label><label class="select-box"><span class="sr-only">Filter by sector</span><select id="sector-filter"><option value="all">All sectors</option><option>Climate</option><option>Health</option><option>Education</option><option>Food</option><option>Fintech</option></select></label><label class="select-box"><span class="sr-only">Filter by stage</span><select id="stage-filter"><option value="all">All stages</option><option>Idea</option><option>Pre-seed</option><option>Seed</option></select></label></section>
         <section id="pitch-grid" class="pitch-grid" aria-live="polite"></section>
-        <section id="empty-state" class="empty-state" hidden><div>✳</div><h2 id="empty-title">No pitches found</h2><p id="empty-description">Try changing your search or filters.</p></section>
+        <section id="empty-state" class="empty-state" hidden><img src="assets/fundme-penguin.png" alt="" width="96" height="96"><h2 id="empty-title">No pitches found</h2><p id="empty-description">Try changing your search or filters.</p></section>
         <section id="inbox-view" class="inbox-view" hidden><div class="inbox-heading"><h2>Introduction requests</h2><p>Requests created in this browser appear here.</p></div><div id="request-list"></div></section>
       </div>
     </main>
   </div>
 
-  <dialog id="pitch-dialog" class="pitch-dialog">
+  <dialog id="pitch-dialog" class="pitch-dialog wizard-dialog">
     <form id="pitch-form">
-      <div class="dialog-heading"><div><p class="eyebrow">YOUR STORY, YOUR WAY</p><h2>Create a sample pitch</h2></div><button class="icon-button" type="button" id="close-dialog" aria-label="Close">×</button></div>
-      <p class="dialog-warning">Demo only: this information is saved in this browser. Don’t enter confidential or personal information.</p>
-      <label>Company name<input name="name" required maxlength="60" placeholder="e.g. Green Path"></label>
-      <div class="form-row"><label>Sector<select name="sector"><option>Climate</option><option>Health</option><option>Education</option><option>Food</option><option>Fintech</option></select></label><label>Stage<select name="stage"><option>Idea</option><option>Pre-seed</option><option>Seed</option></select></label></div>
-      <label>One-line description<textarea name="description" required maxlength="180" rows="3" placeholder="What are you building?"></textarea></label>
-      <label>Location<input name="location" maxlength="60" placeholder="e.g. Bengaluru"></label>
-      <div class="dialog-actions"><button class="button button-quiet" type="button" id="cancel-dialog">Cancel</button><button class="button button-dark" type="submit">Publish sample pitch ↗</button></div>
+      <div class="dialog-heading"><div><p class="eyebrow">A FEW SIMPLE STEPS</p><h2 id="wizard-title">Your startup basics</h2></div><button class="icon-button" type="button" id="close-dialog" aria-label="Close pitch editor">×</button></div>
+      <div class="wizard-progress" aria-label="Pitch creation progress"><span id="wizard-progress-fill"></span></div>
+      <div class="wizard-step-label"><span id="wizard-step-name">Step 1 of 4</span><span>Draft saves in this browser</span></div>
+      <p class="dialog-warning">Demo only: your draft is stored in this browser. Selected media is previewed locally and is not uploaded.</p>
+      <section class="wizard-page" data-step="0">
+        <label>Startup name<input name="name" required maxlength="60" autocomplete="organization" placeholder="e.g. Green Path"></label>
+        <label>One-line description<textarea name="description" required maxlength="180" rows="3" placeholder="What are you building, in one clear sentence?"></textarea></label>
+        <div class="form-row"><label>Category<select name="sector"><option value="">Choose a category</option><option>Climate</option><option>Health</option><option>Education</option><option>Food</option><option>Fintech</option><option>Other</option></select></label><label>Stage<select name="stage"><option value="">Choose a stage</option><option>Idea</option><option>Pre-seed</option><option>Seed</option></select></label></div>
+      </section>
+      <section class="wizard-page" data-step="1" hidden>
+        <label>What problem are you solving?<textarea name="problem" required maxlength="500" rows="3" placeholder="Who has this problem, and why does it matter?"></textarea></label>
+        <label>How does your idea help?<textarea name="solution" required maxlength="500" rows="3" placeholder="What is your approach?"></textarea></label>
+        <div class="form-row"><label>Founder name<input name="founderName" required maxlength="60" autocomplete="name" placeholder="Your name"></label><label>Location<input name="location" required maxlength="60" autocomplete="address-level2" placeholder="e.g. Bengaluru"></label></div>
+        <label>Funding goal <span class="optional-label">Optional · INR</span><input name="fundingGoal" type="number" min="0" max="10000000000" step="10000" inputmode="numeric" placeholder="Leave blank if you prefer"></label>
+      </section>
+      <section class="wizard-page" data-step="2" hidden>
+        <label class="upload-zone"><span class="upload-icon">▧</span><strong>Add photos</strong><span>Choose up to 4 images · JPG, PNG, or WebP · 5 MB each</span><input id="photo-files" type="file" accept="image/jpeg,image/png,image/webp" multiple><span class="button button-quiet upload-trigger">Choose photos</span></label>
+        <div class="media-preview-grid" id="photo-previews" aria-live="polite"></div>
+        <label class="upload-zone video-zone"><span class="upload-icon">▷</span><strong>Add a pitch video</strong><span>MP4, WebM, or MOV · up to 100 MB · one video</span><input id="video-file" type="file" accept="video/mp4,video/webm,video/quicktime"><span class="button button-quiet upload-trigger">Choose video</span></label>
+        <div class="video-preview" id="video-preview" aria-live="polite"></div>
+        <p class="upload-hint">Preview files on this device only. They are not uploaded or saved with your draft in this demo.</p>
+      </section>
+      <section class="wizard-page" data-step="3" hidden>
+        <div class="pitch-preview" id="pitch-preview" aria-live="polite"></div>
+        <p class="dialog-warning">Before publishing: your sample pitch is visible only in this browser. A real public pitch needs a backend, secure media storage, and privacy controls.</p>
+      </section>
+      <p class="form-error" id="wizard-error" role="alert" hidden></p>
+      <div class="dialog-actions wizard-actions"><button class="button button-quiet" type="button" id="cancel-dialog">Save draft & close</button><button class="button button-quiet" type="button" id="wizard-back" hidden>Back</button><button class="button button-dark" type="button" id="wizard-next">Continue <span aria-hidden="true">→</span></button><button class="button button-dark" type="submit" id="wizard-publish" hidden>Publish sample pitch <span aria-hidden="true">↗</span></button></div>
     </form>
+  </dialog>
+
+  <dialog id="details-dialog" class="pitch-dialog details-dialog">
+    <div id="details-content"></div>
+    <div class="dialog-actions"><button class="button button-quiet" type="button" id="close-details">Close</button><button class="button button-dark" type="button" id="details-contact">Contact founder</button></div>
   </dialog>
 
   <dialog id="account-dialog" class="pitch-dialog account-dialog">
     <form id="account-form">
-      <div class="dialog-heading"><div><p class="eyebrow">WELCOME TO FUND ME</p><h2>Create your demo profile</h2></div><button class="icon-button" type="button" id="close-account-dialog" aria-label="Close">×</button></div>
-      <p class="dialog-warning">This is a demo profile saved only in this browser—not a secure account. Don’t enter a password or confidential information.</p>
+      <div class="dialog-heading"><div><p class="eyebrow">WELCOME TO FUND ME</p><h2 id="account-dialog-title">Create your demo profile</h2></div><button class="icon-button" type="button" id="close-account-dialog" aria-label="Close">×</button></div>
+      <p class="dialog-warning">Demo only: this profile stays in this browser. There is no password, secure sign-in, or shared account yet.</p>
+      <div class="account-mode" role="group" aria-label="Profile action"><button type="button" class="account-mode-button active" data-account-mode="create">Create profile</button><button type="button" class="account-mode-button" data-account-mode="signin">Use saved profile</button></div>
       <label>Your name<input name="displayName" required maxlength="50" autocomplete="name" placeholder="How should we call you?"></label>
       <label>I’m here as
         <select name="role" required>
@@ -64,7 +104,8 @@
           <option value="investor">An investor — I want to discover ideas</option>
         </select>
       </label>
-      <div class="dialog-actions"><button class="button button-quiet" type="button" id="cancel-account-dialog">Cancel</button><button class="button button-dark" type="submit">Create demo profile <span aria-hidden="true">↗</span></button></div>
+      <p class="form-error" id="account-error" role="alert" hidden></p>
+      <div class="dialog-actions"><button class="button button-quiet" type="button" id="cancel-account-dialog">Cancel</button><button class="button button-dark" type="submit" id="account-submit">Create demo profile <span aria-hidden="true">↗</span></button></div>
     </form>
   </dialog>
 </body>

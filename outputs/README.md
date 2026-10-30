@@ -1,26 +1,40 @@
-# Fund Me demo
+# Fund Me
 
-This is a static prototype reconstructed from the supplied hosting handoff because the original site source was not included. It is not the original implementation and is not production-ready.
+Fund Me is a responsive, static founder/investor concept demo built with plain HTML, CSS, and JavaScript. No framework, package install, API server, or credentials are required to preview it. This is a reconstruction from the supplied feature brief, not the missing original app.
 
-## What is here
+## Run locally
 
-- `index.html`: responsive product landing page.
-- `app.html`: interactive founder/investor demo.
-- `styles.css`, `script.js`, `app.css`, `app.js`: page styling and interactions.
-- `CNAME`: intended GitHub Pages custom domain (`fundme.in.net`).
+From the repository root, serve the `outputs` directory:
 
-## Publish with GitHub Pages
+```sh
+npx --yes serve outputs
+```
 
-The repository includes a GitHub Actions workflow that publishes the `outputs` folder. In repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. The first deployment may take a few minutes. The custom domain is not enabled yet because its DNS has not been configured; this keeps the default GitHub Pages address working.
+Open the local URL printed by the command. The GitHub Pages workflow also validates JavaScript syntax with `node --check outputs/app.js` and deploys the contents of `outputs` on pushes to `main`.
 
-To connect `fundme.in.net` later, first add a `CNAME` record at the DNS provider with host/name `fundme` and target `judedhillon.github.io` (some providers expect the full host `fundme.in.net`). Do not replace existing DNS records blindly. After DNS resolves to GitHub Pages, set `fundme.in.net` as the custom domain in repository Pages settings and enable **Enforce HTTPS** when the certificate is ready.
+## Main journeys
 
-## Important limitations
+- **Explore:** browse sample startup cards, search and filter, save pitches, and open the pitch details.
+- **Create a profile:** choose founder or investor. In demo mode, the name and role are stored in this browser only. “Use saved profile” switches back to a profile saved in this browser; it is not authentication.
+- **Create a pitch:** founders fill in four short steps—basics, story, media, and preview. Text drafts and the current step are saved in local storage so the form can be resumed in the same browser.
+- **Add media:** select up to four JPG, PNG, or WebP photos (5 MB each) and one MP4, WebM, or MOV video (100 MB). Files are validated and previewed locally. The browser does not upload them; file selections are lost when the page is closed or refreshed.
+- **Contact a founder:** send a sample, permission-based request. The inbox can accept or decline requests made in this browser. No private contact details are exchanged.
 
-- All pitch, saved-list, and introduction data is kept only in the current browser's local storage. It is not shared between users or devices and has no authentication or access control.
-- The role switch is a demo control, not authentication or authorization.
-- The signup form from the handoff is not implemented as a working registration endpoint.
-- There is no video upload, backend, investor verification, moderation, or real introduction service.
-- Do not enter real, sensitive, or confidential information or represent demo actions as real investment introductions.
+## Demo-mode and privacy limits
 
-Use this only to preview the concept. A real service needs a reviewed backend, identity and access controls, secure storage, privacy terms, consent, abuse handling, and operational/legal review before accepting real users or investment-related information.
+The published Pages site is a front-end demonstration, not a real account, investment, or messaging service. Profiles, draft text, saved pitches, and requests stay in the current browser's local storage and are not shared across visitors or devices. Anyone using the same browser profile can access this demo data. Do not enter real private, sensitive, financial, or confidential information. Pitches are not public on the internet in this demo.
+
+## What is needed for a real service
+
+Before representing accounts, pitches, media, or contact requests as shared/live, connect:
+
+1. **Authentication and database:** a trusted identity provider and server-side API/database with access controls. Add only public profile fields to investor-visible data; keep contact details private until the founder consents.
+2. **Media storage:** private object storage with server-issued, short-lived upload URLs, file-size/type validation, malware scanning, moderation, access controls, and deletion support. Never place service credentials or secret keys in frontend code.
+3. **Contact workflow:** server-side request records, founder accept/decline actions, abuse prevention, notifications, and a policy for when contact details may be revealed.
+4. **Operations and compliance:** privacy notice, terms, consent, retention/deletion policies, backups, monitoring, and legal review appropriate to the markets where the service operates.
+
+Provide public frontend configuration only where appropriate (for example, an auth project URL and publishable client key); keep service-role keys, database passwords, and storage secrets in server-side environment variables. No backend credentials are currently configured.
+
+## Deploy
+
+The repository's GitHub Actions workflow publishes `outputs` to GitHub Pages whenever changes are pushed to `main`. Enable **Settings → Pages → Build and deployment → GitHub Actions** once for a new repository. The public demo is hosted at `https://judedhillon.github.io/fundme-demo/`. The custom domain is intentionally not configured until its DNS is pointed at GitHub Pages.
